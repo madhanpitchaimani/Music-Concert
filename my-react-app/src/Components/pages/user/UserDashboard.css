@@ -1,0 +1,327 @@
+.user-dashboard {
+  background-color: black;
+  min-height: 100vh;
+  color: white;
+  padding-bottom: 40px;
+}
+
+
+
+/* ===== AUTO-SCROLLING SLIDER ===== */
+.scroll-carousel-wrapper {
+  overflow: hidden;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.scroll-carousel {
+  display: flex;
+  animation: scroll 30s linear infinite;
+  gap: 20px;
+}
+
+.scroll-item img {
+  height: 300px;
+  width: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+}
+/* 🎤 Artist Section */
+.Artist {
+  padding: 40px 60px;
+  background-color: #000;
+  color: white;
+}
+
+.Artist h1 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  text-align: center;
+  color: crimson;
+}
+
+.artist-row {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.artist-card {
+  background-color: #111;
+  padding: 20px;
+  border-radius: 12px;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.artist-card:hover {
+  transform: scale(1.05);
+}
+
+.artist-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.artist-card button {
+  background-color: crimson;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.artist-card button:hover {
+  background-color: #d40000;
+}
+/* 🎥 Concert Reviews Section */
+.reviews {
+  padding: 40px 60px;
+  background-color: #111;
+  color: white;
+}
+
+.reviews h1 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  text-align: center;
+  color: crimson;
+}
+
+.review-row {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.review-card {
+  width: 320px;
+  background-color: #222;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.review-card video {
+  width: 100%;
+  height: 180px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+
+.review-card h2 {
+  font-size: 18px;
+  margin-top: 5px;
+  color: #f5f5f5;
+}
+
+/* Animation to move left continuously */
+@keyframes scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.videos {
+  padding: 40px;
+  background-color: #000;
+  color: white;
+}
+
+.video-artist-section {
+  margin-top: 30px;
+}
+
+.video-artist-section h2 {
+  margin-bottom: 16px;
+  font-size: 24px;
+  color: #ff3c3c;
+  border-left: 5px solid #ff3c3c;
+  padding-left: 12px;
+}
+
+.video-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+.video-card {
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  padding: 12px;
+  width: 520px;
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.video-card:hover {
+  transform: scale(1.02);
+}
+
+.video-card video {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  aspect-ratio: 16 / 9; /* Landscape shape */
+  object-fit: cover;
+}
+
+.video-card h4 {
+  color: #fff;
+  margin-top: 10px;
+  font-weight: 400;
+}
+.artist-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.artist-card {
+  width: 250px;
+  background: #111;
+  color: #e91e63;
+  text-align: center;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.artist-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.artist-card button {
+  background: #e91e63;
+  color: white;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.artist-card button:hover {
+  background: #d81b60;
+}
+
+.artist-card h1 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 10px 0 5px;
+}
+.artist-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.my-booking-button-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.my-booking-btn {
+  background: #e50914;
+  color: white;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.my-booking-btn:hover {
+  background: #c50711;
+}
+
+.booking-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.booking-modal {
+  background: #111;
+  color: white;
+  padding: 30px;
+  border-radius: 14px;
+  width: 90%;
+  max-width: 380px;
+  position: relative;
+  box-shadow: 0 30px 30px rgba(255, 0, 0, 0.3);
+}
+
+.close-btn {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-size: 24px;
+  background: none;
+  color: red;
+  border: none;
+  cursor: pointer;
+}
+
+.booking-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 20px;
+}
+
+.booking-item {
+  padding: 12px;
+  border-bottom: 1px solid #444;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.delete-booking-btn {
+  margin-top: 10px;
+  padding: 6px 14px;
+  background-color: crimson;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-booking-btn:hover {
+  background-color: #a40000;
+}

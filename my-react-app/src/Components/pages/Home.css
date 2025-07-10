@@ -1,0 +1,90 @@
+body {
+  background-color: black;
+  color: white;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.concert-home-container {
+  padding: 40px;
+  background-color: black;
+  min-height: 100vh;
+}
+
+.concert-section-title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: rgb(194, 9, 9);
+}
+
+.concert-image-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.concert-card {
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  width: 260px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.08);
+  text-align: center;
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 280px;
+  overflow: hidden;
+}
+
+.concert-card:hover {
+  transform: scale(1.03);
+}
+
+.concert-image-wrapper {
+  height: 200px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.concert-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.concert-book-btn {
+  all: unset;
+  display: block;
+  background-color: red;
+  color: white;
+  padding: 12px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 6px;
+  margin-top: 12px;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.concert-book-btn:hover {
+  background-color: darkred;
+}
+
+.concert-footer {
+  background-color: #111;
+  color: #aaa;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 50px;
+  font-size: 14px;
+  border-top: 1px solid #333;
+}

@@ -1,0 +1,245 @@
+/* Admin Dashboard Styles */
+
+.admin-dashboard-container {
+  padding: 30px;
+  background-color: #111;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+}
+
+.admin-dashboard-title {
+  font-size: 32px;
+  color: #e50914;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.admin-tab-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.admin-tab-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #222;
+  color: white;
+  border: 1px solid #555;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.admin-tab-btn:hover {
+  background-color: #333;
+}
+
+.admin-tab-btn.active {
+  background-color: #e50914;
+  border-color: #e50914;
+  color: #fff;
+}
+
+/* Booking Section */
+
+.admin-booking-section {
+  padding: 20px;
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.admin-stats {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.admin-stat-box {
+  background-color: #222;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  min-width: 220px;
+  box-shadow: 0 0 10px rgba(255,255,255,0.05);
+  position: relative;
+}
+
+.admin-stat-box h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: #0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.admin-stat-box span {
+  font-size: 24px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.admin-stat-icon {
+  font-size: 22px;
+  color: gold;
+}
+
+.admin-artist-stats {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.admin-artist-stats ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.admin-artist-stats li {
+  background-color: #2a2a2a;
+  margin: 6px auto;
+  padding: 10px;
+  max-width: 600px;
+  border-radius: 6px;
+  box-shadow: 0 0 5px rgba(255,255,255,0.04);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-badge {
+  background-color: #e50914;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.admin-booking-table-container {
+  margin-top: 20px;
+}
+
+.admin-booking-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #222;
+  color: white;
+}
+
+.admin-booking-table th,
+.admin-booking-table td {
+  border: 1px solid #333;
+  padding: 10px;
+  text-align: center;
+}
+
+.admin-booking-table thead {
+  background-color: #333;
+}
+
+/* Manage Artist Section */
+
+.admin-manage-section {
+  padding: 20px;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 600px;
+  margin-bottom: 30px;
+}
+
+.admin-form input,
+.admin-form textarea {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background-color: #2a2a2a;
+  color: white;
+}
+
+.admin-form textarea {
+  resize: vertical;
+}
+
+.admin-form button {
+  background-color: #e50914;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.admin-artist-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.admin-artist-card {
+  width: 220px;
+  background-color: #1a1a1a;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 10px 10px red;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-artist-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px red;
+}
+
+.admin-artist-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.admin-artist-card h3 {
+  margin: 10px 0;
+  font-size: 18px;
+  color: #f1f1f1;
+}
+
+.admin-artist-card button {
+  padding: 6px 10px;
+  margin: 5px 4px;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.admin-artist-card .edit-btn {
+  background-color: orange;
+  color: #fff;
+}
+
+.admin-artist-card .delete-btn {
+  background-color: red;
+  color: #fff;
+}
+
+.admin-artist-card button:first-child {
+  background-color: #555;
+  color: white;
+}

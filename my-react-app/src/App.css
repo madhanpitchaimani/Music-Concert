@@ -1,0 +1,8 @@
+/* index.css or App.css */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000000; /* Full black */
+  color: #ffffff;            /* White text for contrast */
+  font-family: 'Segoe UI', sans-serif;
+}
