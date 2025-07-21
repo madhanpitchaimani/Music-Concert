@@ -355,11 +355,11 @@
 }
 
 .anirudh-confirm-btn {
-  background-color: #28a745;
+  background-color: red;
 }
 
 .anirudh-confirm-btn:hover {
-  background-color: #218838;
+  background-color: rgb(210, 19, 19);
 }
 .ticket-image {
   margin-bottom: 15px;

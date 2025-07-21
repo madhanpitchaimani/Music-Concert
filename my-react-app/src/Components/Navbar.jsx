@@ -1,6 +1,7 @@
-// ✅ Updated Navbar.jsx with Edit Profile functionality
+// ✅ Updated Navbar.jsx with Edit Profile functionality    
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios'; // ✅ Required for axios.put
 import { FaUser } from 'react-icons/fa';
 import './Navbar.css';
 
@@ -21,7 +22,7 @@ function Navbar() {
   const user = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
-    fetch('http://localhost:3000/concerts')
+    fetch('http://localhost:5000/api/concerts')
       .then(res => res.json())
       .then(data => {
         const dynamicArtists = data.map(item => ({
@@ -77,16 +78,37 @@ function Navbar() {
     setEditedUser({ username: user.username, email: user.email });
   };
 
-  const handleSave = () => {
-    localStorage.setItem('user', JSON.stringify({ ...user, ...editedUser }));
-    setIsEditing(false);
-    window.location.reload();
+  const handleSave = async () => {
+    try {
+      const updatePayload = {
+        username: editedUser.username,
+        email: editedUser.email,
+      };
+
+      if (editedUser.password) {
+        updatePayload.password = editedUser.password;
+      }
+
+      const res = await axios.put(`http://localhost:5000/api/auth/${user._id}`, updatePayload);
+
+      if (res.status === 200) {
+        const updatedUser = res.data;
+        localStorage.setItem('user', JSON.stringify(updatedUser));
+        setIsEditing(false);
+        setShowModal(false);
+        window.location.reload();
+      }
+    } catch (err) {
+      alert("Failed to update profile");
+      console.error(err);
+    }
   };
+
 
   return (
     <>
       <div className="navbar">
-       <div className="logo">🎸 Vibe Vault</div>
+        <div className="logo">🎸 Vibe Vault</div>
 
         <div className="nav-links">
           <Link to="/" className="nav-item">Home</Link>
@@ -143,18 +165,51 @@ function Navbar() {
             <button className="close-x" onClick={() => setShowModal(false)}>×</button>
             <h2 className="modal-title">👤 Account Details</h2>
             <div className="modal-info">
-              {isEditing ? (
-                <>
-                  <p><strong>Username:</strong> <input value={editedUser.username} onChange={e => setEditedUser({ ...editedUser, username: e.target.value })} /></p>
-                  <p><strong>Email:</strong> <input value={editedUser.email} onChange={e => setEditedUser({ ...editedUser, email: e.target.value })} /></p>
-                </>
-              ) : (
+     {isEditing ? (
+  <div className="modal-form">
+    <label>
+      <span>Username:</span>
+      <input
+        className="edit-input"
+        value={editedUser.username}
+        onChange={(e) =>
+          setEditedUser({ ...editedUser, username: e.target.value })
+        }
+      />
+    </label>
+
+    <label>
+      <span>Email:</span>
+      <input
+        className="edit-input"
+        value={editedUser.email}
+        onChange={(e) =>
+          setEditedUser({ ...editedUser, email: e.target.value })
+        }
+      />
+    </label>
+
+    <label>
+      <span>New Password:</span>
+      <input
+        className="edit-input"
+        type="password"
+        placeholder="Leave blank to keep current"
+        value={editedUser.password || ''}
+        onChange={(e) =>
+          setEditedUser({ ...editedUser, password: e.target.value })
+        }
+      />
+    </label>
+  </div>
+) : (
+
                 <>
                   <p><strong>Username:</strong> {user.username}</p>
                   <p><strong>Email:</strong> {user.email}</p>
-                 
                 </>
               )}
+
             </div>
             {isEditing ? (
               <button className="edit-btn" onClick={handleSave}>Save</button>

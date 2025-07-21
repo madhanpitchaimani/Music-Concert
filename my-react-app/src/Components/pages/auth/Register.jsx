@@ -14,26 +14,22 @@ function Register() {
     e.preventDefault();
 
     try {
-      // Check if user already exists
-      const res = await axios.get(`http://localhost:3000/users?email=${email}`);
-      if (res.data.length > 0) {
-        alert("User already exists");
-        return;
-      }
-
-      // Add new user (role = user by default)
-      await axios.post("http://localhost:3000/users", {
+      const response = await axios.post("http://localhost:5000/api/auth/register", {
         username,
         email,
         password,
-        role: "user"
+        role: "user" // by default user role
       });
 
-      alert("Registration successful");
+      alert("Registration successful!");
       navigate('/login');
     } catch (err) {
-      alert("Registration failed");
-      console.error(err);
+      if (err.response && err.response.status === 409) {
+        alert("User already exists with this email.");
+      } else {
+        alert("Registration failed. Please try again.");
+      }
+      console.error("Registration Error:", err);
     }
   };
 
@@ -42,12 +38,35 @@ function Register() {
       <form className="register-form" onSubmit={handleRegister}>
         <h2>Register for ConcertX</h2>
 
-        <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
-        <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
 
         <button type="submit" className="register-button">Register</button>
-        <p className="register-toggle-text">Already have an account? <Link to="/login">Login here</Link></p>
+
+        <p className="register-toggle-text">
+          Already have an account? <Link to="/login">Login here</Link>
+        </p>
       </form>
     </div>
   );

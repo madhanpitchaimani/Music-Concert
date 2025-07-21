@@ -1,6 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import QRCode from 'react-qr-code';
 import html2canvas from 'html2canvas';
+import { useNavigate } from 'react-router-dom';
 import './Adhibook.css';
 
 function Adhibook() {
@@ -11,43 +12,57 @@ function Adhibook() {
   const [seatType, setSeatType] = useState('standard');
   const [paymentMethod, setPaymentMethod] = useState('gpay');
   const ticketRef = useRef(null);
+  const navigate = useNavigate();
 
   const GST = 50;
   const prices = { standard: 800, vip: 2000 };
   const totalAmount = ticketCount * prices[seatType] + ticketCount * GST;
 
-  const handleContinue = () => {
+  // ✅ Prevent admin access
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user?.email === 'admin@gmail.com') {
+      alert("Admins are not allowed to book tickets.");
+      navigate('/admin');
+    }
+  }, [navigate]);
+
+  const handleContinue = async () => {
     const image = new Image();
     image.src = '/adhicon.jpg';
 
     image.onload = async () => {
-      // ✅ Save booking to JSON server
       const user = JSON.parse(localStorage.getItem('user'));
       const email = user?.email || 'unknown';
 
-      const bookingData = {
-        artist: "Adhi",
-        email,
-        seatType,
-        ticketCount,
-        totalAmount,
-        paymentMethod,
-        bookingDate: new Date().toISOString()
-      };
+  const bookingData = {
+  artist: "Adhi",
+  email,
+  seatType,
+  ticketCount,
+  totalAmount,
+  paymentMethod,
+  bookingDate: new Date().toISOString(),
+  venueName: "Chennai Trade Centre, Nandambakkam",
+  artistImage: "/adhicon.jpg"
+};
+
 
       try {
-        await fetch('http://localhost:3000/bookings', {
+        await fetch('http://localhost:5000/api/bookings', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(bookingData)
         });
+        alert("Booking Successful! Ticket will now be downloaded.");
       } catch (err) {
         console.error("Failed to save booking:", err);
+        alert("Failed to save booking.");
+        return;
       }
 
-      // ✅ Download ticket
       setTimeout(() => {
         html2canvas(ticketRef.current).then((canvas) => {
           const link = document.createElement('a');
@@ -65,11 +80,13 @@ function Adhibook() {
 
   return (
     <div className="adhi-page">
+      {/* 🎤 Hero Section */}
       <div className="adhi-concert-image-container">
         <img src="/adhicon.jpg" alt="Adhi Concert" className="adhi-concert-image" />
         <button className="adhi-book-btn" onClick={() => setShowBooking(true)}>Book Now</button>
       </div>
 
+      {/* 📍 Venue Section */}
       <div className="adhi-card-section">
         <h2>Venue</h2>
         <div className="adhi-card">
@@ -81,26 +98,25 @@ function Adhibook() {
         </div>
       </div>
 
+      {/* 📅 Event Details */}
       <div className="adhi-card-section">
         <h2>Event Details</h2>
         <div className="adhi-card">
-          <div className="adhi-card-text">
-            Full details about the event schedule and access
-          </div>
+          <div className="adhi-card-text">Full details about the event schedule and access</div>
           <button className="adhi-view-btn" onClick={() => setShowEvent(true)}>View</button>
         </div>
       </div>
 
+      {/* ⚠️ Concert Rules */}
       <div className="adhi-card-section">
         <h2>Concert Rules</h2>
         <div className="adhi-card">
-          <div className="adhi-card-text">
-            Important rules and guidelines
-          </div>
+          <div className="adhi-card-text">Important rules and guidelines</div>
           <button className="adhi-view-btn" onClick={() => setShowRules(true)}>View</button>
         </div>
       </div>
 
+      {/* 🔍 Modal: Event Details */}
       {showEvent && (
         <div className="adhi-modal-overlay">
           <div className="adhi-modal-content">
@@ -118,6 +134,7 @@ function Adhibook() {
         </div>
       )}
 
+      {/* 🔍 Modal: Concert Rules */}
       {showRules && (
         <div className="adhi-modal-overlay">
           <div className="adhi-modal-content">
@@ -135,11 +152,11 @@ function Adhibook() {
         </div>
       )}
 
+      {/* 🧾 Booking Modal */}
       {showBooking && (
         <div className="adhi-modal-overlay">
           <div className="adhi-modal-content">
             <button className="adhi-close-btn" onClick={() => setShowBooking(false)}>×</button>
-
             <h2>Confirm Booking</h2>
 
             <label>Tickets:</label>
@@ -200,6 +217,7 @@ function Adhibook() {
         </div>
       )}
 
+      {/* 🎟️ Hidden Ticket Component */}
       <div style={{ position: 'absolute', left: '-9999px', top: 0 }}>
         <div ref={ticketRef} className="adhi-ticket">
           <div className="ticket-left">
@@ -218,12 +236,8 @@ function Adhibook() {
             <h1 className="ticket-title">ADHI</h1>
             <p className="ticket-event">Hiphop Tamizha Tour</p>
             <p className="ticket-date">27 Aug 2025 | 7:00 PM</p>
-            <p className="ticket-venue">
-              Chennai Trade Centre, Nandambakkam
-            </p>
-            <p className="ticket-details">
-              Seat: {seatType.toUpperCase()} | Tickets: {ticketCount}
-            </p>
+            <p className="ticket-venue">Chennai Trade Centre, Nandambakkam</p>
+            <p className="ticket-details">Seat: {seatType.toUpperCase()} | Tickets: {ticketCount}</p>
             <p className="ticket-price">Total: ₹{totalAmount}</p>
             <div className="ticket-qr">
               <QRCode value={`Adhi | ${ticketCount} Ticket(s) | ₹${totalAmount}`} size={80} />
@@ -231,6 +245,9 @@ function Adhibook() {
           </div>
         </div>
       </div>
+        <footer className="concert-footer">
+        <p>&copy; 2025 Vibe Vault. All rights reserved.</p>
+      </footer>
     </div>
   );
 }

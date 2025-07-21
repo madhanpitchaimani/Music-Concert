@@ -243,3 +243,89 @@
   background-color: #555;
   color: white;
 }
+/* New form layout enhancements */
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* gap between inputs */
+  max-width: 600px;
+  margin: 0 auto; /* center the form */
+}
+.admin-form h5 {
+  grid-column: span 2;
+  font-size: 16px;
+  color: #e50914;
+  margin-top: 10px;
+  border-bottom: 1px solid #444;
+  padding-bottom: 5px;
+}
+
+.admin-form input,
+.admin-form textarea {
+  width: 100%;
+  height: 45px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background-color: #2a2a2a;
+  color: white;
+  box-sizing: border-box;
+}
+
+.admin-form textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.admin-form img {
+  grid-column: span 2;
+  max-width: 120px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  margin-top: -8px;
+  margin-bottom: 8px;
+}
+
+.admin-form button {
+  grid-column: span 2;
+  margin-top: 10px;
+  padding: 12px;
+  background: #e50914;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+}
+/* Center the form inside the manage section */
+.admin-manage-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+}
+
+/* Optional: limit form width */
+.admin-form {
+  width: 100%;
+  max-width: 700px;
+}
+.input-row {
+
+  display: flex;
+  gap: 10px;
+}
+
+.input-row input {
+  flex: 1;
+}
+
+/* Reduce Rules Textarea Height */
+.rules-textarea {
+  height: 80px; /* or 60px */
+  resize: vertical;
+}
+.input-row .route{
+  width: 80px;
+}

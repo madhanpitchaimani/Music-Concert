@@ -238,7 +238,7 @@
   color: #ee3636;
 }
 .modal-box input.edit-input {
-  width: 100%;
+  width: 90%;
   padding: 10px 14px;
   margin: 12px 0;
   border: 2px solid #ff3b3f;
@@ -255,5 +255,23 @@
   outline: none;
   background-color: #3c3c3c;
   color: #ffffff;
-  box-shadow: 0 0 8px rgba(255, 59, 63, 0.6);
+  box-shadow: 0 20px 20px red;
+}
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.modal-form label {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.modal-form label span {
+  margin-bottom: 5px;
 }

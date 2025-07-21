@@ -1,7 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import QRCode from 'react-qr-code';
 import html2canvas from 'html2canvas';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './Yuvanbook.css';
 
 function Yuvanbook() {
@@ -12,10 +13,20 @@ function Yuvanbook() {
   const [seatType, setSeatType] = useState('standard');
   const [paymentMethod, setPaymentMethod] = useState('gpay');
   const ticketRef = useRef(null);
+  const navigate = useNavigate();
 
   const GST = 50;
   const prices = { standard: 1200, vip: 2800 };
   const totalAmount = ticketCount * prices[seatType] + ticketCount * GST;
+
+  // ✅ Prevent Admin Booking
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user?.email === 'admin@gmail.com') {
+      alert("Admins are not allowed to book tickets.");
+      navigate('/admin');
+    }
+  }, [navigate]);
 
   const openMap = () => {
     window.open(
@@ -24,18 +35,33 @@ function Yuvanbook() {
     );
   };
 
-  const handleContinue = () => {
+  const handleContinue = async () => {
     const user = JSON.parse(localStorage.getItem('user'));
-    if (user) {
-      axios.post('http://localhost:3000/bookings', {
-        artist: 'Yuvan',
-        email: user.email,
-        ticketCount,
-        seatType,
-        totalAmount,
-        paymentMethod,
-        bookingTime: new Date().toISOString()
-      });
+
+    if (!user) {
+      alert("Please log in to continue booking.");
+      return;
+    }
+
+   const bookingData = {
+  artist: "Yuvan",
+  email,
+  seatType,
+  ticketCount,
+  totalAmount,
+  paymentMethod,
+  bookingDate: new Date().toISOString(),
+  venueName: "Nandambakkam Trade Centre, Chennai",
+  artistImage: "/yuvancon.jpg"
+};
+
+    try {
+      await axios.post('http://localhost:5000/api/bookings', bookingData);
+      alert("Booking Successful!");
+    } catch (err) {
+      console.error("Booking failed:", err);
+      alert("Booking failed. Please try again.");
+      return;
     }
 
     const image = new Image();
@@ -57,15 +83,13 @@ function Yuvanbook() {
 
   return (
     <div>
-      {/* Navbar */}
-
-      {/* Concert Image */}
+      {/* 🎤 Hero Section */}
       <div className="yuvan-concert-image-container">
-        <img src="yuvancon.jpg" alt="Yuvan Concert" className="yuvan-concert-image" />
+        <img src="/yuvancon.jpg" alt="Yuvan Concert" className="yuvan-concert-image" />
         <button className="yuvan-book-btn" onClick={() => setShowBooking(true)}>Book Now</button>
       </div>
 
-      {/* Venue */}
+      {/* 📍 Venue Section */}
       <div className="yuvan-card-section">
         <h2>Venue</h2>
         <div className="yuvan-card">
@@ -77,7 +101,7 @@ function Yuvanbook() {
         </div>
       </div>
 
-      {/* Event Details */}
+      {/* 📅 Event Details */}
       <div className="yuvan-card-section">
         <h2>Event Details</h2>
         <div className="yuvan-card">
@@ -88,7 +112,7 @@ function Yuvanbook() {
         </div>
       </div>
 
-      {/* Concert Rules */}
+      {/* ⚠️ Concert Rules */}
       <div className="yuvan-card-section">
         <h2>Concert Rules</h2>
         <div className="yuvan-card">
@@ -99,7 +123,7 @@ function Yuvanbook() {
         </div>
       </div>
 
-      {/* Event Modal */}
+      {/* 🔍 Modal: Event Details */}
       {showEvent && (
         <div className="yuvan-modal-overlay">
           <div className="yuvan-modal-content">
@@ -117,7 +141,7 @@ function Yuvanbook() {
         </div>
       )}
 
-      {/* Rules Modal */}
+      {/* 🔍 Modal: Concert Rules */}
       {showRules && (
         <div className="yuvan-modal-overlay">
           <div className="yuvan-modal-content">
@@ -135,7 +159,7 @@ function Yuvanbook() {
         </div>
       )}
 
-      {/* Booking Modal */}
+      {/* 🧾 Booking Modal */}
       {showBooking && (
         <div className="yuvan-modal-overlay">
           <div className="yuvan-modal-content">
@@ -197,7 +221,7 @@ function Yuvanbook() {
         </div>
       )}
 
-      {/* Hidden Ticket for Download */}
+      {/* 🎟️ Hidden Ticket Component */}
       <div style={{ position: 'absolute', left: '-9999px', top: 0 }}>
         <div ref={ticketRef} className="yuvan-ticket">
           <div className="ticket-left">
@@ -230,12 +254,12 @@ function Yuvanbook() {
         </div>
       </div>
 
-      {/* Footer */}
+      {/* 📢 Footer */}
       <footer className="yuvan-footer">
         <div className="yuvan-footer-content">
           <a href="#">Privacy Policy</a>
           <a href="#">Contact Us</a>
-          <span>© 2025 ConcertX. All rights reserved.</span>
+          <span>© 2025 Vibe Vault. All rights reserved.</span>
         </div>
       </footer>
     </div>

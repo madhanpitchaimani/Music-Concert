@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import QRCode from 'react-qr-code';
 import html2canvas from 'html2canvas';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Anirudhbook.css';
 
@@ -18,45 +19,35 @@ function Anirudhbook() {
   const prices = { standard: 1000, vip: 3000 };
   const totalAmount = ticketCount * prices[seatType] + ticketCount * GST;
 
-  // ✅ Prevent admin from accessing this page
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
-    const isAdmin = user?.email === 'admin@gmail.com'; // adjust to your admin email
+    const isAdmin = user?.email === 'admin@gmail.com';
     if (isAdmin) {
       alert("Admins are not allowed to book tickets.");
-      navigate('/admin'); // redirect to Admin Dashboard
+      navigate('/admin');
     }
   }, [navigate]);
 
-  const handleContinue = () => {
-    const image = new Image();
-    image.src = '/anicon.jpeg';
+  const handleContinue = async () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const email = user?.email || 'unknown';
 
-    image.onload = async () => {
-      const user = JSON.parse(localStorage.getItem('user'));
-      const email = user?.email || 'unknown';
+  const bookingData = {
+  artist: "Anirudh",
+  email,
+  seatType,
+  ticketCount,
+  totalAmount,
+  paymentMethod,
+  bookingDate: new Date().toISOString(),
+  venueName: "Nithya Kalyana Perumal Temple Grounds, ECR, Chennai",
+  artistImage: "/anicon.jpeg"
+};
 
-      const bookingData = {
-        artist: "Anirudh",
-        email,
-        seatType,
-        ticketCount,
-        totalAmount,
-        paymentMethod,
-        bookingDate: new Date().toISOString()
-      };
 
-      try {
-        await fetch('http://localhost:3000/bookings', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(bookingData)
-        });
-      } catch (err) {
-        console.error("Failed to save booking:", err);
-      }
+    try {
+      await axios.post('http://localhost:5000/api/bookings', bookingData);
+      alert("Booking Successful! Ticket will now be downloaded.");
 
       setTimeout(() => {
         html2canvas(ticketRef.current).then((canvas) => {
@@ -66,11 +57,10 @@ function Anirudhbook() {
           link.click();
         });
       }, 300);
-    };
-
-    image.onerror = () => {
-      alert("Image failed to load. Please check your image path.");
-    };
+    } catch (err) {
+      console.error("Failed to save booking:", err);
+      alert("Booking failed. Please try again.");
+    }
   };
 
   return (
@@ -154,6 +144,7 @@ function Anirudhbook() {
               type="number"
               value={ticketCount}
               onChange={(e) => setTicketCount(Number(e.target.value))}
+              style={{ width: '427px' }}
               min="1"
               className="anirudh-input"
             />
@@ -207,7 +198,7 @@ function Anirudhbook() {
         </div>
       )}
 
-      {/* Hidden ticket component for download */}
+      {/* Hidden Ticket for Download */}
       <div style={{ position: 'absolute', left: '-9999px', top: 0 }}>
         <div ref={ticketRef} className="anirudh-ticket">
           <div className="ticket-left">
@@ -239,6 +230,9 @@ function Anirudhbook() {
           </div>
         </div>
       </div>
+        <footer className="concert-footer">
+        <p>&copy; 2025 Vibe Vault. All rights reserved.</p>
+      </footer>
     </div>
   );
 }

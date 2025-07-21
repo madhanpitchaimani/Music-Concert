@@ -166,7 +166,7 @@
   border-radius: 12px;
   padding: 12px;
   width: 520px;
-  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+  box-shadow: 0 20px 25px red;
   transition: transform 0.3s;
   display: flex;
   flex-direction: column;
@@ -205,7 +205,7 @@
   text-align: center;
   padding: 20px;
   border-radius: 16px;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 20px 25px red;
   transition: transform 0.2s ease;
 }
 
@@ -266,25 +266,26 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.85);
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
-  align-items: center;
   justify-content: center;
-  z-index: 9999;
+  align-items: center;
+  z-index: 1000;
 }
 
+
 .booking-modal {
-  background: #111;
-  color: white;
-  padding: 30px;
-  border-radius: 14px;
-  width: 90%;
-  max-width: 380px;
+  background: #090909;
+  padding: 20px;
+  border-radius: 10px;
+  max-height: 80vh;       /* 🔥 Limit height */
+  overflow-y: auto;       /* 🔥 Enable vertical scroll if content overflows */
+  width: 500px;
   position: relative;
-  box-shadow: 0 30px 30px rgba(255, 0, 0, 0.3);
 }
+
 
 .close-btn {
   position: absolute;
@@ -310,18 +311,3 @@
   line-height: 1.6;
 }
 
-.delete-booking-btn {
-  margin-top: 10px;
-  padding: 6px 14px;
-  background-color: crimson;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
-}
-
-.delete-booking-btn:hover {
-  background-color: #a40000;
-}
