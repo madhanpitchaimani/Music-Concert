@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './ImageSlider.css';
 
 const images = [
+  'vibe.jpeg',
   'banner1.jpg',
   'banner2.jpg',
   'banner3.jpg',
+  
 ];
 
 function ImageSlider() {

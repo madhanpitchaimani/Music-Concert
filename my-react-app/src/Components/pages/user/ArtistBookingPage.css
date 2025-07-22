@@ -117,7 +117,13 @@
   box-shadow: 0 25px 25px rgba(230, 4, 4, 0.4);
   color: white;
 }
+.anirudh-modal-content .ticket-input {
+  width: 440px;
+  height: 30px;
+   border: 1px solid #999;
+  border-radius: 5px;
 
+}
 .anirudh-modal-content h2 {
   margin-bottom: 20px;
   font-size: 22px;
@@ -303,4 +309,197 @@
 
 .ticket-qr {
   margin-top: 20px;
+}
+.anirudh-input,
+.anirudh-modal-content .ticket-input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0 20px;
+  border: 1px solid #999;
+  border-radius: 8px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  .concert-image {
+    height: 200px;
+  }
+
+  .anirudh-card {
+    width: 80%;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .anirudh-card-text {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+
+  .anirudh-input {
+    width: 100%;
+  }
+
+  .anirudh-modal-content {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .concert-image {
+    height: 300px;
+  }
+
+  .anirudh-card {
+    width: 90%;
+  }
+
+  .anirudh-modal-content {
+    width: 95%;
+    padding: 16px;
+  }
+
+  .anirudh-input {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .anirudh-proceed-btn,
+  .anirudh-confirm-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .ticket-left {
+    width: 30%;
+    padding: 16px;
+  }
+
+  .ticket-right {
+    width: 70%;
+    padding: 20px;
+  }
+
+  .ticket-title {
+    font-size: 30px;
+  }
+
+  .ticket-event {
+    font-size: 18px;
+  }
+
+  .ticket-date,
+  .ticket-venue,
+  .ticket-details,
+  .ticket-price {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .concert-image {
+    height: 200px;
+  }
+
+  .book-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .anirudh-card {
+    width: 95%;
+    padding: 16px;
+  }
+
+  .anirudh-card-text {
+    font-size: 14px;
+  }
+
+  .anirudh-direction-btn,
+  .anirudh-view-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .anirudh-modal-content {
+    height: 50%;
+    width: 40%;
+    padding: 14px;
+    font-size: 14px;
+    max-height: 100vh;             /* ✅ Allow scroll if needed */
+    overflow-y: auto;             /* ✅ Scroll on overflow */
+    position: relative;
+  }
+
+  .anirudh-close-btn {
+    position: absolute;           /* ✅ Always fixed in modal */
+    top: 10px;
+    right: 10px;
+    font-size: 22px;
+    color: red;
+    background: none;
+    border: none;
+    z-index: 1000;                /* ✅ Ensure it's above other content */
+    cursor: pointer;
+  }
+
+  .anirudh-modal-content h2 {
+    font-size: 18px;
+  }
+
+  .anirudh-input {
+    font-size: 13px;
+    padding: 8px;
+    width: 100%;                  /* ✅ Input takes full width on small screens */
+  }
+
+  .payment-icon {
+    width: 32px;
+    height: auto;
+  }
+
+  .anirudh-proceed-btn,
+  .anirudh-confirm-btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .anirudh-ticket {
+    flex-direction: column;
+    height: auto;
+    width: 90vw;
+  }
+
+  .ticket-left,
+  .ticket-right {
+    width: 100%;
+    border-right: none;
+    padding: 16px;
+  }
+
+  .ticket-poster {
+    width: 80px;
+    height: 80px;
+    top: 20px;
+    right: 20px;
+  }
+
+  .ticket-title {
+    font-size: 24px;
+  }
+
+  .ticket-event,
+  .ticket-date,
+  .ticket-venue,
+  .ticket-details,
+  .ticket-price {
+    font-size: 14px;
+  }
+
+  .ticket-qr {
+    display: flex;
+    justify-content: center;
+  }
 }

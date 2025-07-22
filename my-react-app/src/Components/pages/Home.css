@@ -7,7 +7,7 @@ body {
 }
 
 .concert-home-container {
-  padding: 40px;
+  padding: 40px 20px;
   background-color: black;
   min-height: 100vh;
 }
@@ -87,4 +87,36 @@ body {
   margin-top: 50px;
   font-size: 14px;
   border-top: 1px solid #333;
+}
+
+/* 🔻 Responsive Styles */
+@media (max-width: 108px) {
+  .concert-home-container {
+    padding: 30px 15px;
+  }
+
+  .concert-card {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .concert-section-title {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .concert-section-title {
+    font-size: 20px;
+  }
+
+  .concert-book-btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .concert-footer {
+    font-size: 12px;
+    padding: 15px 0;
+  }
 }

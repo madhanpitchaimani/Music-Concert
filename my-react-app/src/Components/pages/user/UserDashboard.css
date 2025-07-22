@@ -311,3 +311,90 @@
   line-height: 1.6;
 }
 
+@media (max-width: 768px) {
+  .scroll-item img {
+    height: 180px;
+    width: 120px;
+  }
+
+  .Artist {
+    padding: 20px;
+  }
+
+  .artist-card {
+    width: 100%;
+    max-width: 300px;
+    padding: 16px;
+  }
+
+  .video-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .video-row {
+    justify-content: center;
+  }
+
+  .booking-modal {
+    width: 80%;
+    max-height: 70vh;
+    padding: 16px;
+  }
+
+  .my-booking-btn {
+     width: 80%;
+    font-size: 14px;
+  }
+
+  .concert-footer p {
+    font-size: 14px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .Artist h1,
+  .videos h1,
+  .reviews h1 {
+    font-size: 24px;
+  }
+
+  .artist-card h1 {
+    font-size: 1rem;
+  }
+
+  .my-booking-btn {
+    width: 90%;
+    font-size: 14px;
+  }
+
+  .booking-item {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .close-btn {
+    top: 10px;
+    right: 12px;
+    font-size: 22px;
+  }
+
+  .video-artist-section h2 {
+    font-size: 20px;
+    padding-left: 10px;
+  }
+
+  .scroll-carousel-wrapper {
+    margin-top: 20px;
+  }
+
+  .video-card {
+    padding: 8px;
+  }
+
+  .video-card h2 {
+    font-size: 16px;
+  }
+}

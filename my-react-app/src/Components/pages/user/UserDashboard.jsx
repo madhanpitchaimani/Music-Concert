@@ -175,12 +175,12 @@ function UserDashboard() {
       <div className="Artist">
         <h1>Artist Concerts</h1>
         <div className="artist-row">
-          <div className="artist-card">
+          {/* <div className="artist-card">
             <img src="ani.jpg" alt="Anirudh" />
             <h1>Anirudh Ravichander</h1>
             <button onClick={() => navigate('/anirudh')}>View</button>
-          </div>
-          <div className="artist-card">
+          </div> */}
+          {/* <div className="artist-card">
             <img src="aadhi.webp" alt="Hiphop Aadhi" />
             <h1>Hiphop Tamizha Adhi</h1>
             <button onClick={() => navigate('/adhi')}>View</button>
@@ -189,7 +189,7 @@ function UserDashboard() {
             <img src="yuvan.jpg" alt="Yuvan Shankar Raja" />
             <h1>Yuvan Shankar Raja</h1>
             <button onClick={() => navigate('/yuvan')}>View</button>
-          </div>
+          </div> */}
 
           {concerts.map((concert, index) => (
             <div className="artist-card" key={index}>

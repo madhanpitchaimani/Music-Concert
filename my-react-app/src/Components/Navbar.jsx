@@ -108,8 +108,8 @@ function Navbar() {
   return (
     <>
       <div className="navbar">
-        <div className="logo">🎸 Vibe Vault</div>
-
+        <div className="logo">🎸  Vibe Vault</div>
+            <div className="nav-top-row">
         <div className="nav-links">
           <Link to="/" className="nav-item">Home</Link>
           <button
@@ -123,26 +123,7 @@ function Navbar() {
           </button>
         </div>
 
-        <div className="search-bar-container">
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Search artist..."
-            value={query}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-          />
-          <button className="search-btn" onClick={handleSearch}>Go</button>
-          {suggestions.length > 0 && (
-            <ul className="suggestion-box">
-              {suggestions.map((artist, i) => (
-                <li key={i} onClick={() => handleSuggestionClick(artist)}>
-                  {artist.name}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+       
 
         <div className="user-controls">
           <FaUser className="user-icon" />
@@ -158,7 +139,31 @@ function Navbar() {
           )}
         </div>
       </div>
+  <div className="search-bar-container">
+       <div className="search-wrapper">
+    <input
+      type="text"
+      className="search-input"
+      placeholder="Search artist..."
+      value={query}
+      onChange={handleInputChange}
+      onKeyDown={handleKeyDown}
+    />
+    {suggestions.length > 0 && (
+      <ul className="suggestion-box">
+        {suggestions.map((artist, i) => (
+          <li key={i} onClick={() => handleSuggestionClick(artist)}>
+            {artist.name}
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+  <button className="search-btn" onClick={handleSearch}>Go</button>
+</div>
 
+      </div>
+  
       {showModal && (
         <div className="modal-overlay">
           <div className="modal-box">

@@ -45,3 +45,54 @@
 .register-button:hover {
   background-color: #9e0000;
 }
+@media (max-width: 768px) {
+  .register-form {
+    width: 80%;
+    padding: 1.5rem;
+  }
+
+  .register-form h2 {
+    font-size: 1.6rem;
+  }
+
+  .register-form input {
+    width: 80%;
+    font-size: 1rem;
+  }
+
+  .register-button {
+    font-size: 1rem;
+    padding: 0.65rem;
+  }
+
+  .register-toggle-text {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-container {
+    padding: 1rem;
+    width: 80%;
+  }
+
+  .register-form {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+  }
+
+  .register-form h2 {
+    font-size: 1.4rem;
+  }
+
+  .register-button {
+    padding: 0.6rem;
+    font-size: 0.95rem;
+  }
+
+  .register-toggle-text {
+    text-align: center;
+    font-size: 0.85rem;
+  }
+}

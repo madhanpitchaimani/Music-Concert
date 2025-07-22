@@ -138,12 +138,12 @@ function ArtistBookingPage() {
         <div className="anirudh-modal-overlay">
           <div className="anirudh-modal-content">
             <button
-  className="anirudh-close-btn"
-  onClick={() => setShowBooking(false)}
-  style={{ position: 'absolute', top: '10px', right: '15px', fontSize: '24px', background: 'transparent', color: 'red', border: 'none', cursor: 'pointer' }}
->
-  ×
-</button>
+              className="anirudh-close-btn"
+              onClick={() => setShowBooking(false)}
+              style={{ position: 'absolute', top: '10px', right: '15px', fontSize: '24px', background: 'transparent', color: 'red', border: 'none', cursor: 'pointer' }}
+            >
+              ×
+            </button>
 
             <h2>Confirm Booking</h2>
             <label>Tickets:</label>
@@ -151,9 +151,9 @@ function ArtistBookingPage() {
               type="number"
               value={ticketCount}
               onChange={(e) => setTicketCount(Number(e.target.value))}
-                     style={{ width: '427px' }}
+
               min="1"
-              className="anirudh-input"
+              className='ticket-input'
             />
             <label>Seat Type:</label>
             <select
@@ -255,7 +255,7 @@ function ArtistBookingPage() {
           </div>
         </div>
       </div>
-        <footer className="concert-footer">
+      <footer className="concert-footer">
         <p>&copy; 2025 Vibe Vault. All rights reserved.</p>
       </footer>
     </div>
